@@ -3,9 +3,466 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello Page</title>
+
+  <!-- SEO Meta Tags -->
+  <title>小河内タイムレンズ｜湖底に沈んだ村をARで蘇らせる — 奥多摩町町制施行70周年記念事業</title>
+  <meta name="description" content="1957年、小河内ダムの完成により湖底に沈んだ小河内村。スマートフォンをかざすと、かつての村の暮らしが浮かび上がる。奥多摩湖の底に眠る記憶を蘇らせるARプロジェクト。">
+  <meta name="keywords" content="小河内タイムレンズ,奥多摩湖,小河内村,小河内ダム,AR,拡張現実,奥多摩町,町制施行70周年,文化遺産,デジタルアーカイブ,湖底,歴史">
+  <meta name="author" content="小河内タイムレンズ プロジェクト">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://takashihamada.github.io/ogouchi-time-lens-web/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://takashihamada.github.io/ogouchi-time-lens-web/">
+  <meta property="og:title" content="小河内タイムレンズ｜湖底に沈んだ村をARで蘇らせる">
+  <meta property="og:description" content="1957年、小河内ダムの完成により湖底に沈んだ小河内村。スマートフォンをかざすと、かつての村の暮らしが浮かび上がる。奥多摩湖の底に眠る記憶を蘇らせるARプロジェクト。">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="小河内タイムレンズ">
+  <!-- <meta property="og:image" content="TODO: OGP画像URL"> -->
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="小河内タイムレンズ｜湖底に沈んだ村をARで蘇らせる">
+  <meta name="twitter:description" content="1957年、小河内ダムの完成により湖底に沈んだ小河内村。スマートフォンをかざすと、かつての村の暮らしが浮かび上がる。">
+  <!-- <meta name="twitter:image" content="TODO: OGP画像URL"> -->
+
+  <!-- Favicon (TODO: 実際のfaviconファイルを追加してください) -->
+  <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+  <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <p>hello</p>
+
+  <!-- ============================
+       Navigation
+       ============================ -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="nav-logo">小河内タイムレンズ</a>
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#story">物語</a></li>
+        <li><a href="#video">動画</a></li>
+        <li><a href="#features">体験</a></li>
+        <li><a href="#heritage">文化遺産</a></li>
+        <li><a href="#team">チーム</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+        <!-- TODO: WEBアプリURL確定後にhrefを更新 -->
+        <li><a href="#app" class="nav-cta">アプリを開く</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============================
+       Hero Section
+       ============================ -->
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content fade-in">
+      <p class="hero-tagline">奥多摩町町制施行70周年記念事業</p>
+      <h1 class="hero-title">
+        <span class="hero-title-main">小河内タイムレンズ</span>
+        <span class="hero-title-sub">湖底に眠る村の記憶を、蘇らせる。</span>
+      </h1>
+      <p class="hero-description">
+        1957年、小河内ダムの完成により湖底に沈んだ小河内村。<br>
+        スマートフォンをかざすと、かつての村の暮らしが浮かび上がります。
+      </p>
+      <div class="hero-buttons">
+        <!-- TODO: WEBアプリURL確定後にhrefを更新 -->
+        <a href="#app" class="btn btn-primary">アプリを体験する</a>
+        <a href="#video" class="btn btn-secondary">動画を見る</a>
+      </div>
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave Divider -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z" fill="#0a0e1a"/>
+    </svg>
+  </div>
+
+  <!-- ============================
+       Story Section
+       ============================ -->
+  <section class="section section-story" id="story">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">この湖の底に、<br>ひとつの村が眠っています。</h2>
+      </div>
+
+      <div class="story-grid">
+        <div class="story-text slide-up">
+          <p class="story-lead">
+            東京都の水瓶として知られる小河内貯水池。通称、奥多摩湖。<br>
+            この静かな湖の底に、ひとつの村が沈んでいることを、あなたはご存じですか。
+          </p>
+          <p>
+            その村の名は、<strong>小河内村</strong>。かつて「東京の奥座敷」として知られ、
+            数多くの伝統芸能が受け継がれていた美しい村でした。
+          </p>
+          <p>
+            1957年、小河内ダムの完成により、945世帯の集落が湖底へと沈みました。
+            都市発展の影で、人々の暮らし、祭り、そして物語が、静かに水の下へと消えていきました。
+          </p>
+          <p>
+            町制施行70周年という節目にあたり、私たちは水の底に眠る記憶を蘇らせるプロジェクトを立ち上げました。
+          </p>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-grid slide-up">
+          <div class="stat-card">
+            <span class="stat-number" data-target="1957">0</span>
+            <span class="stat-label">年 ダム完成</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" data-target="945">0</span>
+            <span class="stat-label">世帯が湖底に</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" data-target="70">0</span>
+            <span class="stat-label">周年 記念事業</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave Divider -->
+  <div class="wave-divider wave-divider-reverse">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C240,0 480,120 720,60 C960,0 1200,120 1440,60 L1440,120 L0,120 Z" fill="#0d2137"/>
+    </svg>
+  </div>
+
+  <!-- ============================
+       Video Section
+       ============================ -->
+  <section class="section section-video" id="video">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">映像で見る、小河内タイムレンズ</h2>
+        <p class="section-subtitle">プロジェクトの全貌を、映像でご覧ください。</p>
+      </div>
+
+      <div class="video-wrapper fade-in">
+        <div class="video-container">
+          <!-- TODO: YouTube動画URL確定後に data-src を更新 -->
+          <div class="lazy-iframe video-placeholder"
+               data-src="https://www.youtube.com/embed/VIDEO_ID"
+               data-title="小河内タイムレンズ プロモーション映像"
+               data-width="560"
+               data-height="315">
+            <div class="video-placeholder-content">
+              <svg class="play-icon" viewBox="0 0 68 48" width="68" height="48">
+                <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.63-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#c8a45c"/>
+                <path d="M45 24L27 14v20" fill="#0a0e1a"/>
+              </svg>
+              <p>動画を再生</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave Divider -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z" fill="#0a0e1a"/>
+    </svg>
+  </div>
+
+  <!-- ============================
+       Features Section
+       ============================ -->
+  <section class="section section-features" id="features">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">スマホをかざすと、<br>湖底の村が浮かび上がる。</h2>
+        <p class="section-subtitle">使い方はとてもシンプル。看板のQRコードをスマートフォンで読み取るだけ。</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card slide-up">
+          <div class="feature-icon">
+            <svg viewBox="0 0 64 64" width="64" height="64"><circle cx="32" cy="32" r="28" fill="none" stroke="#c8a45c" stroke-width="2"/><path d="M20 20h24v24H20z" fill="none" stroke="#c8a45c" stroke-width="2" rx="3"/><circle cx="32" cy="32" r="6" fill="#c8a45c" opacity="0.6"/><path d="M32 14v4M32 46v4M14 32h4M46 32h4" stroke="#c8a45c" stroke-width="2"/></svg>
+          </div>
+          <h3>ARマップ体験</h3>
+          <p>現在の奥多摩湖の地図の上に、かつての小河内村の住宅地図が重なります。画面を指でなぞると、湖底に広がる集落を巡ることができます。</p>
+        </div>
+
+        <div class="feature-card slide-up">
+          <div class="feature-icon">
+            <svg viewBox="0 0 64 64" width="64" height="64"><path d="M16 48L32 8l16 40" fill="none" stroke="#c8a45c" stroke-width="2"/><path d="M10 48h44" stroke="#c8a45c" stroke-width="2"/><path d="M24 32h16" stroke="#c8a45c" stroke-width="2" opacity="0.5"/><circle cx="32" cy="20" r="3" fill="#c8a45c" opacity="0.6"/></svg>
+          </div>
+          <h3>3Dモデル表示</h3>
+          <p>古地図の等高線情報から再現した湖底の3D地形。スマートフォンの向きにあわせて、かつての川、道、集落が、今の風景に重なります。</p>
+        </div>
+
+        <div class="feature-card slide-up">
+          <div class="feature-icon">
+            <svg viewBox="0 0 64 64" width="64" height="64"><circle cx="32" cy="24" r="12" fill="none" stroke="#c8a45c" stroke-width="2"/><path d="M32 36c-12 0-20 8-20 16h40c0-8-8-16-20-16z" fill="none" stroke="#c8a45c" stroke-width="2"/><path d="M44 16l4-4M20 16l-4-4" stroke="#c8a45c" stroke-width="2" opacity="0.5"/></svg>
+          </div>
+          <h3>記憶のアーカイブ</h3>
+          <p>当時を知る方へのインタビューを多数収録。子どものときの思い出の場所やエピソードなど、歴史資料にはない彩り豊かな生きた物語です。</p>
+        </div>
+
+        <div class="feature-card slide-up">
+          <div class="feature-icon">
+            <svg viewBox="0 0 64 64" width="64" height="64"><rect x="12" y="8" width="40" height="48" rx="4" fill="none" stroke="#c8a45c" stroke-width="2"/><path d="M20 20h24M20 28h24M20 36h16" stroke="#c8a45c" stroke-width="1.5" opacity="0.6"/><circle cx="44" cy="44" r="8" fill="#0a0e1a" stroke="#c8a45c" stroke-width="2"/><path d="M42 44h4M44 42v4" stroke="#c8a45c" stroke-width="2"/></svg>
+          </div>
+          <h3>ピン情報表示</h3>
+          <p>地図上のピンを触ると、湖に沈む前の詳しい情報を見ることができます。「いまはここ」ボタンで移転先の場所もわかります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave Divider -->
+  <div class="wave-divider wave-divider-reverse">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C240,0 480,120 720,60 C960,0 1200,120 1440,60 L1440,120 L0,120 Z" fill="#0d2137"/>
+    </svg>
+  </div>
+
+  <!-- ============================
+       Heritage Section
+       ============================ -->
+  <section class="section section-heritage" id="heritage">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">受け継がれる伝統、<br>語り継がれる物語。</h2>
+      </div>
+
+      <div class="heritage-grid">
+        <div class="heritage-card slide-up">
+          <div class="heritage-badge">ユネスコ無形文化遺産</div>
+          <h3>鹿島踊り</h3>
+          <p>小河内に伝わる伝統芸能のひとつ。ユネスコ無形文化遺産に登録されたこの踊りが、湖底のどこで行われていたかをアプリで知ることができます。</p>
+        </div>
+
+        <div class="heritage-card slide-up">
+          <div class="heritage-badge">国指定重要無形民俗文化財</div>
+          <h3>川野車人形</h3>
+          <p>国の重要無形民俗文化財に指定された車人形。保存会の有志がこのプロジェクトに集い、記憶を未来につなぐ活動に取り組んでいます。</p>
+        </div>
+
+        <div class="heritage-card slide-up">
+          <div class="heritage-badge">東京都指定無形民俗文化財</div>
+          <h3>原と川野の獅子舞</h3>
+          <p>東京都の無形民俗文化財に指定された獅子舞。記事の中には動画へのリンクもあり、伝統の息吹を感じることができます。</p>
+        </div>
+
+        <div class="heritage-card slide-up">
+          <div class="heritage-badge">民話10話収録</div>
+          <h3>小河内の民話</h3>
+          <p>語り部・荒澤弘さんによる「やまんばあ物語」「猫踊り秘聞」など、小河内に伝わるユニークな民話10話を、奥多摩弁を交えた音声で聞くことができます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave Divider -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z" fill="#0a0e1a"/>
+    </svg>
+  </div>
+
+  <!-- ============================
+       CTA Section (App Link)
+       ============================ -->
+  <section class="section section-cta" id="app">
+    <div class="container">
+      <div class="cta-content fade-in">
+        <h2 class="cta-title">記憶を未来につなぐ。</h2>
+        <p class="cta-text">
+          この湖の底に人々の暮らしと物語があったことを。<br>
+          小河内タイムレンズ。<br>
+          <strong>ここ奥多摩湖に、会いに来てください。</strong>
+        </p>
+        <!-- TODO: WEBアプリURL確定後にhrefを更新 -->
+        <a href="#" class="btn btn-primary btn-large">アプリを体験する</a>
+        <p class="cta-note">スマートフォンで奥多摩湖周辺からアクセスすると、すべての機能をお楽しみいただけます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave Divider -->
+  <div class="wave-divider wave-divider-reverse">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C240,0 480,120 720,60 C960,0 1200,120 1440,60 L1440,120 L0,120 Z" fill="#0d2137"/>
+    </svg>
+  </div>
+
+  <!-- ============================
+       Team / Staff Credits
+       ============================ -->
+  <section class="section section-team" id="team">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">プロジェクトチーム</h2>
+        <p class="section-subtitle">湖の底に眠る記憶を蘇らせたい。その想いに集まった人たちがいます。</p>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card slide-up">
+          <div class="team-role">発起人・ディレクター</div>
+          <h3 class="team-name">濱田 隆史</h3>
+          <p class="team-description">本プロジェクトの発起人であり、ディレクター。湖底に沈んだ村の記憶を現代に蘇らせるビジョンを描き、プロジェクトを牽引。</p>
+        </div>
+
+        <div class="team-card slide-up">
+          <div class="team-role">資料整理・原稿執筆</div>
+          <h3 class="team-name">川崎 渚</h3>
+          <p class="team-description">散逸しつつある資料を丁寧に整理し、原稿を執筆。歴史と記憶を文章で紡ぎ出す。</p>
+        </div>
+
+        <div class="team-card slide-up">
+          <div class="team-role">地域コーディネーター</div>
+          <h3 class="team-name">坂村 徳子</h3>
+          <p class="team-description">小河内に暮らし、人と人を繋いだキーパーソン。地域の人々の声をプロジェクトに届ける。</p>
+        </div>
+      </div>
+
+      <div class="team-supporters fade-in">
+        <p>川野車人形保存会の有志の方々、<br>そしてインタビューにご協力いただいた皆さまに、心より感謝いたします。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave Divider -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z" fill="#0a0e1a"/>
+    </svg>
+  </div>
+
+  <!-- ============================
+       Social Media Section
+       ============================ -->
+  <section class="section section-social" id="social">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">最新情報</h2>
+        <p class="section-subtitle">プロジェクトの最新情報はSNSでお届けしています。</p>
+      </div>
+
+      <div class="social-grid fade-in">
+        <!-- Twitter / X -->
+        <div class="social-card">
+          <div class="social-icon social-icon-x">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="#f0ece4">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </div>
+          <h3>X (Twitter)</h3>
+          <!-- TODO: Twitterアカウント確定後にhrefを更新 -->
+          <a href="#" class="btn btn-social" target="_blank" rel="noopener noreferrer">フォローする</a>
+
+          <!-- Twitter埋め込みタイムライン（アカウント確定後に有効化） -->
+          <!--
+          <div class="social-embed">
+            <a class="twitter-timeline" data-height="400" data-theme="dark" href="https://twitter.com/ACCOUNT_NAME">最新ツイート</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+          -->
+        </div>
+
+        <!-- Instagram -->
+        <div class="social-card">
+          <div class="social-icon social-icon-instagram">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="#f0ece4">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </div>
+          <h3>Instagram</h3>
+          <!-- TODO: Instagramアカウント確定後にhrefを更新 -->
+          <a href="#" class="btn btn-social" target="_blank" rel="noopener noreferrer">フォローする</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave Divider -->
+  <div class="wave-divider wave-divider-reverse">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C240,0 480,120 720,60 C960,0 1200,120 1440,60 L1440,120 L0,120 Z" fill="#0d2137"/>
+    </svg>
+  </div>
+
+  <!-- ============================
+       Contact Section
+       ============================ -->
+  <section class="section section-contact" id="contact">
+    <div class="container">
+      <div class="contact-content fade-in">
+        <h2 class="section-title">お問い合わせ</h2>
+        <p class="section-subtitle">
+          プロジェクトに関するご質問、取材のお申し込み、<br>
+          小河内村の資料・写真・証言のご提供など、お気軽にご連絡ください。
+        </p>
+        <!-- TODO: Google FormのURL確定後にhrefを更新 -->
+        <a href="#" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">お問い合わせフォームへ</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       Footer
+       ============================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>小河内タイムレンズ</h3>
+          <p>奥多摩町町制施行70周年記念事業</p>
+        </div>
+        <div class="footer-links">
+          <a href="#story">物語</a>
+          <a href="#video">動画</a>
+          <a href="#features">体験</a>
+          <a href="#heritage">文化遺産</a>
+          <a href="#team">チーム</a>
+          <a href="#contact">お問い合わせ</a>
+        </div>
+        <div class="footer-social">
+          <!-- TODO: SNSリンク確定後に更新 -->
+          <a href="#" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="#8ba4b8"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="#8ba4b8"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 小河内タイムレンズ プロジェクト. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="main.js" defer></script>
+
 </body>
 </html>
