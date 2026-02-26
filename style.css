@@ -2125,6 +2125,17 @@ footer {
   box-shadow: 0 4px 15px rgba(139, 115, 85, 0.25);
 }
 
+.social-profile-img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.25rem;
+  display: block;
+  border: 3px solid var(--gold);
+  box-shadow: 0 4px 15px rgba(139, 115, 85, 0.25);
+}
+
 .social-card h3 {
   font-family: var(--font-body);
   font-size: 1rem;
