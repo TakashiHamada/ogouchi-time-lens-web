@@ -1605,7 +1605,8 @@ footer {
 .nav-cta {
   background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
   color: var(--white) !important;
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 1.75rem;
+  white-space: nowrap;
   border-radius: 50px;
   font-weight: 600;
   font-size: 0.825rem !important;
