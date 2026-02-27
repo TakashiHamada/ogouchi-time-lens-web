@@ -1097,7 +1097,7 @@ section:nth-of-type(odd) {
 footer {
   padding: 3rem 1.5rem 2rem;
   text-align: center;
-  background-color: #2a2018;
+  background-color: #172e3a;
   border-top: 1px solid rgba(139, 115, 85, 0.15);
 }
 
@@ -1792,6 +1792,10 @@ footer {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.story-panorama-spacer {
+  height: 68px; /* wave divider height */
 }
 
 .story-text strong {
