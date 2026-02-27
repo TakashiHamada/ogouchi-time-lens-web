@@ -82,6 +82,7 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -1276,7 +1277,7 @@ footer {
   }
 
   section {
-    padding: 3.5rem 1rem;
+    padding: 5rem 1rem;
   }
 
   .section-header {
@@ -1880,7 +1881,11 @@ footer {
     padding: 0 40px;
   }
   .carousel-slide {
-    flex: 0 0 80%;
+    flex: 0 0 100%;
+  }
+  .carousel-slide .phone-frame {
+    max-width: 80%;
+    margin-inline: auto;
   }
   .carousel-btn {
     width: 32px;
@@ -2309,6 +2314,12 @@ footer {
   background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
 }
 
+.social-embed {
+  overflow: hidden;
+  max-width: 100%;
+  margin-top: 1.5rem;
+}
+
 .social-card h3 {
   font-family: var(--font-body);
   font-size: 1rem;
@@ -2451,9 +2462,51 @@ footer {
   }
 
   .heritage-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 500px;
-    margin-inline: auto;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .heritage-card {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    text-align: left;
+    padding: 1.25rem;
+    column-gap: 1.25rem;
+    row-gap: 0.25rem;
+  }
+
+  .heritage-card .heritage-photo {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    width: 80px;
+    height: 80px;
+    margin: 0;
+    align-self: center;
+  }
+
+  .heritage-card .heritage-badge {
+    grid-column: 2;
+    grid-row: 1;
+    margin-bottom: 0;
+    justify-self: start;
+  }
+
+  .heritage-card h3 {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 1.05rem;
+    margin-bottom: 0;
+  }
+
+  .heritage-card .heritage-link {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    padding: 0.35rem 1rem;
+    justify-self: start;
   }
 
   .team-grid {
@@ -2464,8 +2517,55 @@ footer {
 
   .social-grid {
     grid-template-columns: 1fr;
-    max-width: 340px;
-    margin-inline: auto;
+  }
+
+  .social-card {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    text-align: left;
+    padding: 1.25rem;
+    column-gap: 1.25rem;
+    row-gap: 0.25rem;
+  }
+
+  .social-card .social-profile-link {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 80px;
+    margin: 0;
+  }
+
+  .social-card .social-profile-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .social-card .social-badge {
+    bottom: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+  }
+
+  .social-card h3 {
+    grid-column: 2;
+    grid-row: 1;
+    margin-bottom: 0;
+    align-self: end;
+  }
+
+  .social-card .btn-social {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: start;
+    align-self: start;
+  }
+
+  .social-card .social-embed {
+    grid-column: 1 / -1;
+    grid-row: 3;
   }
 
   .section-cta,
