@@ -436,6 +436,189 @@ const injectStructuredData = () => {
 };
 
 /* =========================================================
+   10. Hero photo bubbles — floating memory photos
+   ========================================================= */
+
+const initHeroPhotoBubbles = () => {
+  const container = document.querySelector('.hero-photo-bubbles');
+  if (!container) return;
+
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  const photoFiles = [
+    '00.jpg','01.jpg','02.jpg','03.jpg','05.jpg','07.jpg','09.jpg',
+    '100.jpg','1001.jpg','1004.jpg','101.jpg','102.jpg','103.jpg','112.jpg',
+    '17.jpg','18.jpg','19.jpg','20.jpg','21.jpg','22.jpg','23.jpg',
+    '26.jpg','27.jpg','30.jpg','31.jpg','32.jpg','33.jpg','38.jpg','39.jpg',
+    '41.jpg','66.jpg','67.jpg','69.jpg','70.jpg','71.jpg','72.jpg',
+    '73.jpg','74.jpg','81.jpg','83.jpg','84.jpg','85.jpg','86.jpg',
+    '87.jpg','88.jpg','89.jpg','90.jpg','91.jpg','92.jpg','93.jpg',
+    '94.jpg','95.jpg','96.jpg','97.jpg','98.jpg','99.jpg',
+  ];
+
+  // Fisher-Yates shuffle
+  for (let i = photoFiles.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [photoFiles[i], photoFiles[j]] = [photoFiles[j], photoFiles[i]];
+  }
+
+  // 画面幅に応じて大・中・小の個数を決定
+  const vw = window.innerWidth;
+  let nLarge, nMedium, nSmall;
+  if (vw <= 480) {        // スマホ小: 合計3〜4
+    nLarge = 1; nMedium = 1; nSmall = 1 + Math.floor(Math.random() * 2);
+  } else if (vw <= 768) { // スマホ大〜タブレット: 合計4〜6
+    nLarge = 1; nMedium = 2; nSmall = 1 + Math.floor(Math.random() * 2);
+  } else {                // PC: 合計7〜9
+    nLarge = 2; nMedium = 3; nSmall = 2 + Math.floor(Math.random() * 2);
+  }
+
+  // サイズ枠ごとにランダムなpx値を生成
+  const sizeForCategory = (category) => {
+    if (category === 'large')  return 150 + Math.floor(Math.random() * 51);  // 150〜200px
+    if (category === 'medium') return 90 + Math.floor(Math.random() * 51);   // 90〜140px
+    return 40 + Math.floor(Math.random() * 41);                              // 40〜80px (small)
+  };
+
+  const plan = [
+    ...Array(nLarge).fill('large'),
+    ...Array(nMedium).fill('medium'),
+    ...Array(nSmall).fill('small'),
+  ];
+  const selected = photoFiles.slice(0, plan.length);
+
+  // Each bubble holds its position (px) and velocity (px/frame)
+  const bubbles = [];
+
+  selected.forEach((filename, i) => {
+    const img = document.createElement('img');
+    img.src = `images/photos/${filename}`;
+    img.className = 'photo-bubble';
+    img.loading = 'lazy';
+    img.alt = '';
+
+    const size = sizeForCategory(plan[i]);
+    const t = (size - 40) / 160; // 0(small/far)〜1(large/near)
+    img.style.width = `${size}px`;
+    img.style.height = `${size}px`;
+    img.style.opacity = (0.45 + t * 0.35).toFixed(2); // small=0.45, large=0.8
+
+    container.appendChild(img);
+
+    const speed = 0.1 + t * 0.35;
+
+    const bubble = {
+      el: img,
+      size,
+      speed,
+      x: 0, y: 0,
+      vx: 0, vy: 0,
+      placed: false,
+      hovered: false,
+      scale: 1,
+      targetScale: 1,
+    };
+
+    // PC hover: stop & enlarge to fixed 250px
+    const hoverScale = 250 / size;
+    img.addEventListener('mouseenter', () => {
+      bubble.hovered = true;
+      bubble.targetScale = hoverScale;
+      img.classList.add('is-hovered');
+    });
+    img.addEventListener('mouseleave', () => {
+      bubble.hovered = false;
+      bubble.targetScale = 1;
+      img.classList.remove('is-hovered');
+    });
+
+    bubbles.push(bubble);
+  });
+
+  // Distribute initial directions evenly, with a small random jitter
+  const angleStep = (Math.PI * 2) / bubbles.length;
+  const angleOffset = Math.random() * Math.PI * 2; // random rotation for the whole set
+  bubbles.forEach((b, i) => {
+    const angle = angleOffset + angleStep * i + (Math.random() - 0.5) * 0.6;
+    b.vx = Math.cos(angle) * b.speed;
+    b.vy = Math.sin(angle) * b.speed;
+  });
+
+  // Place bubbles with overlap avoidance
+  const placeBubbles = (cw, ch) => {
+    const placed = [];
+    const overlaps = (x, y, size) => {
+      const cx = x + size / 2;
+      const cy = y + size / 2;
+      const r = size / 2;
+      for (const p of placed) {
+        const dx = cx - p.cx;
+        const dy = cy - p.cy;
+        const minDist = r + p.r + 10; // 10px margin
+        if (dx * dx + dy * dy < minDist * minDist) return true;
+      }
+      return false;
+    };
+
+    bubbles.forEach((b) => {
+      let x, y, attempts = 0;
+      do {
+        x = Math.random() * (cw - b.size);
+        y = Math.random() * (ch - b.size);
+        attempts++;
+      } while (overlaps(x, y, b.size) && attempts < 100);
+
+      b.x = x;
+      b.y = y;
+      b.placed = true;
+      placed.push({ cx: x + b.size / 2, cy: y + b.size / 2, r: b.size / 2 });
+    });
+  };
+
+  if (prefersReducedMotion) return;
+
+  // Animation loop — bounce off container edges
+  let initialized = false;
+  const animate = () => {
+    const cw = container.clientWidth;
+    const ch = container.clientHeight;
+
+    if (!initialized) {
+      placeBubbles(cw, ch);
+      initialized = true;
+    }
+
+    bubbles.forEach((b) => {
+      // Smoothly interpolate scale
+      b.scale += (b.targetScale - b.scale) * 0.08;
+
+      // Move only when not hovered
+      if (!b.hovered) {
+        b.x += b.vx;
+        b.y += b.vy;
+
+        // Bounce off edges
+        if (b.x <= 0) { b.x = 0; b.vx = Math.abs(b.vx); }
+        if (b.y <= 0) { b.y = 0; b.vy = Math.abs(b.vy); }
+        if (b.x + b.size >= cw) { b.x = cw - b.size; b.vx = -Math.abs(b.vx); }
+        if (b.y + b.size >= ch) { b.y = ch - b.size; b.vy = -Math.abs(b.vy); }
+      }
+
+      // translate to center, then scale from center
+      const cx = b.x + b.size / 2;
+      const cy = b.y + b.size / 2;
+      b.el.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%) scale(${b.scale.toFixed(3)})`;
+    });
+
+    requestAnimationFrame(animate);
+  };
+
+  requestAnimationFrame(animate);
+};
+
+/* =========================================================
    Boot
    ========================================================= */
 
@@ -540,6 +723,7 @@ const init = () => {
   initHeroParallax();
   initCounterAnimation();
   initWaterRipple();
+  initHeroPhotoBubbles();
   initMobileMenu();
   initLazyIframes();
   initCarousel();
