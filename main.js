@@ -439,6 +439,100 @@ const injectStructuredData = () => {
    Boot
    ========================================================= */
 
+/* =================================================================
+   10. SCREENSHOT CAROUSEL
+   ================================================================= */
+
+const initCarousel = () => {
+  const carousel = document.querySelector('.carousel');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('.carousel-track');
+  const slides = Array.from(track.children);
+  const prevBtn = carousel.querySelector('.carousel-btn-prev');
+  const nextBtn = carousel.querySelector('.carousel-btn-next');
+  const dotsContainer = carousel.querySelector('.carousel-dots');
+
+  let currentIndex = 0;
+  let slidesPerView = 3;
+  let autoplayTimer = null;
+
+  const updateSlidesPerView = () => {
+    slidesPerView = window.innerWidth <= 768 ? 1 : 3;
+  };
+
+  const maxIndex = () => Math.max(0, slides.length - slidesPerView);
+
+  const buildDots = () => {
+    dotsContainer.innerHTML = '';
+    const count = maxIndex() + 1;
+    for (let i = 0; i < count; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `スライド ${i + 1}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    }
+  };
+
+  const updateDots = () => {
+    dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
+    });
+  };
+
+  const goTo = (index) => {
+    currentIndex = Math.max(0, Math.min(index, maxIndex()));
+    const pct = currentIndex * (100 / slidesPerView);
+    track.style.transform = `translateX(-${pct}%)`;
+    updateDots();
+  };
+
+  const next = () => goTo(currentIndex >= maxIndex() ? 0 : currentIndex + 1);
+  const prev = () => goTo(currentIndex <= 0 ? maxIndex() : currentIndex - 1);
+
+  const startAutoplay = () => {
+    stopAutoplay();
+    autoplayTimer = setInterval(next, 4000);
+  };
+
+  const stopAutoplay = () => {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+  };
+
+  prevBtn.addEventListener('click', () => { prev(); startAutoplay(); });
+  nextBtn.addEventListener('click', () => { next(); startAutoplay(); });
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  track.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+  track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? next() : prev();
+      startAutoplay();
+    }
+  });
+
+  // Pause on hover
+  carousel.addEventListener('mouseenter', stopAutoplay);
+  carousel.addEventListener('mouseleave', startAutoplay);
+
+  const handleResize = () => {
+    updateSlidesPerView();
+    buildDots();
+    goTo(Math.min(currentIndex, maxIndex()));
+  };
+
+  window.addEventListener('resize', handleResize);
+  updateSlidesPerView();
+  buildDots();
+  startAutoplay();
+};
+
+
 const init = () => {
   initScrollAnimations();
   initNavScroll();
@@ -448,6 +542,7 @@ const init = () => {
   initWaterRipple();
   initMobileMenu();
   initLazyIframes();
+  initCarousel();
   injectStructuredData();
 };
 
