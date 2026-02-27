@@ -1584,7 +1584,7 @@ footer {
 
 .hero-logo {
   display: block;
-  max-width: min(80%, 500px);
+  max-width: min(80%, 700px);
   height: auto;
   margin-inline: auto;
   filter: drop-shadow(0 2px 20px rgba(0, 0, 0, 0.4));
@@ -1594,19 +1594,21 @@ footer {
   font-family: var(--font-heading);
   font-size: clamp(1rem, 3vw, 1.6rem);
   font-weight: 500;
-  color: rgba(250, 247, 240, 0.8);
+  color: rgba(250, 247, 240, 0.95);
   letter-spacing: 0.06em;
   line-height: 1.5;
   margin-bottom: 0.5rem;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 0, 0, 0.4);
 }
 
 .hero-description {
   font-size: clamp(0.85rem, 2vw, 1.05rem);
-  color: rgba(250, 247, 240, 0.7);
+  color: rgba(250, 247, 240, 0.9);
   line-height: 2;
   margin-bottom: 2.5rem;
   max-width: 600px;
   margin-inline: auto;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 0, 0, 0.4);
 }
 
 .hero-buttons {
@@ -1696,6 +1698,19 @@ footer {
   font-size: clamp(1.05rem, 2.5vw, 1.2rem) !important;
   color: var(--text-primary) !important;
   line-height: 2 !important;
+}
+
+.story-panorama {
+  margin-top: 2.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 25px rgba(42, 32, 24, 0.12);
+}
+
+.story-panorama img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .story-text strong {
@@ -1879,6 +1894,11 @@ footer {
   background-color: var(--bg-primary);
 }
 
+.features-cta {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
 .feature-icon {
   display: flex;
   align-items: center;
@@ -1904,10 +1924,21 @@ footer {
 
 .heritage-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--gap);
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.2rem;
   max-width: var(--container-max);
   margin-inline: auto;
+}
+
+.heritage-photo {
+  display: block;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1rem;
+  border: 3px solid rgba(139, 115, 85, 0.15);
+  box-shadow: 0 4px 15px rgba(42, 32, 24, 0.1);
 }
 
 .heritage-card {
@@ -1915,29 +1946,21 @@ footer {
   border: 1px solid rgba(139, 115, 85, 0.12);
   border-radius: 16px;
   padding: 2rem 1.5rem;
+  text-align: center;
   box-shadow: 0 2px 12px rgba(42, 32, 24, 0.04);
-  transition:
-    transform var(--duration-mid) var(--ease-out),
-    box-shadow var(--duration-mid) var(--ease-out),
-    border-color var(--duration-mid) var(--ease-out);
-}
-
-.heritage-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(42, 32, 24, 0.1);
-  border-color: rgba(139, 115, 85, 0.25);
 }
 
 .heritage-badge {
   display: inline-block;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   font-weight: 600;
   color: var(--accent-green);
-  letter-spacing: 0.06em;
-  padding: 0.3rem 0.8rem;
+  letter-spacing: 0.02em;
+  padding: 0.25rem 0.6rem;
   border: 1px solid rgba(45, 80, 22, 0.3);
   border-radius: 50px;
   margin-bottom: 1rem;
+  white-space: nowrap;
 }
 
 .heritage-card h3 {
@@ -1946,10 +1969,24 @@ footer {
   color: var(--text-primary);
 }
 
-.heritage-card p {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.8;
+
+
+.heritage-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-gold);
+  text-decoration: none;
+  padding: 0.45rem 1.2rem;
+  border: 1px solid rgba(139, 115, 85, 0.3);
+  border-radius: 50px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.heritage-link:hover {
+  background: var(--accent-gold);
+  color: var(--bg-primary);
 }
 
 /* ── CTA section ─────────────────────────────────────────── */
@@ -2084,6 +2121,13 @@ footer {
   font-size: 0.85rem;
   color: var(--text-secondary);
   line-height: 1.7;
+}
+
+.team-hozonkai {
+  font-size: 0.78rem;
+  color: var(--gold);
+  margin-top: 0.6rem;
+  letter-spacing: 0.03em;
 }
 
 .team-staff {
@@ -2394,7 +2438,7 @@ footer {
 
 @media (max-width: 768px) {
   .hero-logo {
-    max-width: min(90%, 350px);
+    max-width: min(90%, 450px);
   }
 
   .hero-buttons {
@@ -2407,8 +2451,8 @@ footer {
   }
 
   .heritage-grid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 500px;
     margin-inline: auto;
   }
 

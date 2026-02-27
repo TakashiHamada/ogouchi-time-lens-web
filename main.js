@@ -381,8 +381,8 @@ const injectStructuredData = () => {
     {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: '小河内タイムレンズ プロジェクト',
-      alternateName: 'Ogouchi Time Lens Project',
+      name: '川野車人形保存会',
+      alternateName: 'Kawano Kuruma Ningyo Hozonkai',
       description:
         '奥多摩湖の湖底に沈んだ小河内村をARで可視化するプロジェクト',
       url: window.location.origin,
@@ -422,7 +422,7 @@ const injectStructuredData = () => {
       },
       organizer: {
         '@type': 'Organization',
-        name: '小河内タイムレンズ プロジェクト',
+        name: '川野車人形保存会',
       },
     },
   ];
