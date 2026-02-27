@@ -45,7 +45,7 @@
   --font-body:       'Noto Sans JP', 'Yu Gothic', 'Hiragino Sans', sans-serif;
 
   /* ── Spacing ────────────────────────────────────────────── */
-  --section-padding:    5rem 1.5rem;
+  --section-padding:    1.5rem 1.5rem 3.5rem;
   --section-padding-lg: 7rem 2rem;
   --container-max:      1100px;
   --gap:                2rem;
@@ -475,7 +475,7 @@ section:nth-of-type(odd) {
   pointer-events: none;
   background-color: inherit;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L1440,0 L1440,60 C1200,100 960,20 720,60 C480,100 240,20 0,60 Z' fill='%230a0e1a'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L1440,0 L1440,60 C1200,100 960,20 720,60 C480,100 240,20 0,60 Z' fill='%232a4a5a'/%3E%3C/svg%3E");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -1097,7 +1097,7 @@ section:nth-of-type(odd) {
 footer {
   padding: 3rem 1.5rem 2rem;
   text-align: center;
-  background-color: #2a2018;
+  background-color: #172e3a;
   border-top: 1px solid rgba(139, 115, 85, 0.15);
 }
 
@@ -1277,7 +1277,7 @@ footer {
   }
 
   section {
-    padding: 5rem 1rem;
+    padding: 1.5rem 1rem 8rem;
   }
 
   .section-header {
@@ -1612,6 +1612,23 @@ footer {
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 0, 0, 0.4);
 }
 
+.hero-text-glass {
+  background: rgba(42, 32, 24, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 1rem;
+  padding: 0.8rem 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-text-glass .hero-description {
+  margin-bottom: 0.8rem;
+}
+
+.hero-text-glass .hero-buttons {
+  margin-bottom: 0;
+}
+
 .hero-buttons {
   display: flex;
   gap: 1rem;
@@ -1644,6 +1661,55 @@ footer {
   border-color: rgba(250, 247, 240, 0.5);
   color: #faf7f0;
   box-shadow: 0 0 25px rgba(250, 247, 240, 0.08);
+}
+
+/* ── Photo bubbles (hero) ────────────────────────────────── */
+
+.hero-photo-bubbles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: var(--z-hero-overlay);
+  pointer-events: none;
+}
+
+.photo-bubble {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0.7;
+  pointer-events: none;
+  box-shadow: 0 0 20px rgba(168, 144, 112, 0.3), 0 0 40px rgba(139, 115, 85, 0.15);
+  will-change: transform;
+}
+
+/* PC only: enable hover interaction */
+@media (hover: hover) and (pointer: fine) {
+  .hero-photo-bubbles {
+    z-index: var(--z-hero-content);
+  }
+
+  .hero-content {
+    pointer-events: none;
+  }
+
+  .hero-content a,
+  .hero-content button {
+    pointer-events: auto;
+  }
+
+  .photo-bubble {
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  .photo-bubble.is-hovered {
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(168, 144, 112, 0.5), 0 0 60px rgba(139, 115, 85, 0.3);
+    z-index: 10;
+  }
 }
 
 .scroll-arrow {
@@ -1703,15 +1769,33 @@ footer {
 
 .story-panorama {
   margin-top: 2.5rem;
-  border-radius: 12px;
+  margin-bottom: 0;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 6px 25px rgba(42, 32, 24, 0.12);
+  box-shadow: none;
+}
+
+.section-story {
+  padding-bottom: 0;
+}
+
+@media (min-width: 769px) {
+  .story-panorama {
+    margin-left: -2rem;
+    margin-right: -2rem;
+  }
 }
 
 .story-panorama img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.story-panorama-spacer {
+  height: 68px; /* wave divider height */
 }
 
 .story-text strong {
@@ -2570,7 +2654,7 @@ footer {
 
   .section-cta,
   .section-contact {
-    padding: 4rem 1rem;
+    padding: 1.5rem 1rem 4rem;
   }
 
   .btn-large {
