@@ -460,73 +460,27 @@ section:nth-of-type(odd) {
 
 
 /* =============================================================
-   6. WATER SURFACE DIVIDER (wavy SVG-based)
+   6. WAVE DIVIDER (CSS pseudo-element, gap-proof)
    ============================================================= */
 
-.wave-divider {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  margin-top: -1px;
-}
-
-.wave-divider svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  min-height: 50px;
-}
-
-.wave-divider--top {
-  transform: rotate(180deg);
-}
-
-.wave-divider--dark svg path {
-  fill: var(--bg-primary);
-}
-
-.wave-divider--mid svg path {
-  fill: var(--bg-secondary);
-}
-
-/* Animated wave using pseudo-elements */
-.wave-divider-animated {
-  position: relative;
-  height: 80px;
-  overflow: hidden;
-  background: transparent;
-}
-
-.wave-divider-animated::before,
-.wave-divider-animated::after {
+.section::before {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: -5%;
-  width: 110%;
-  height: 100%;
-  background-repeat: repeat-x;
-  background-size: 800px 80px;
+  top: -69px;
+  left: 0;
+  right: 0;
+  height: 70px;
+  z-index: 2;
+  pointer-events: none;
+  background-color: inherit;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 80'%3E%3Cpath d='M0,40 C200,80 400,0 800,40 L800,80 L0,80 Z' fill='%23ede7db'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L1440,0 L1440,60 C1200,100 960,20 720,60 C480,100 240,20 0,60 Z' fill='%230a0e1a'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
-.wave-divider-animated::before {
-  animation: wave-drift 8s linear infinite;
-  opacity: 0.6;
-}
-
-.wave-divider-animated::after {
-  animation: wave-drift 12s linear infinite reverse;
-  opacity: 0.4;
-  background-size: 600px 60px;
-  bottom: -5px;
-}
-
-@keyframes wave-drift {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-800px); }
+.section-contact::before {
+  background-color: var(--bg-secondary);
 }
 
 
@@ -575,9 +529,7 @@ section:nth-of-type(odd) {
 
   .hero::before,
   .hero::after,
-  .scroll-indicator,
-  .wave-divider-animated::before,
-  .wave-divider-animated::after {
+  .scroll-indicator {
     animation: none;
   }
 }
@@ -2260,9 +2212,6 @@ footer {
   color: rgba(250, 247, 240, 0.35);
 }
 
-.wave-divider-reverse {
-  transform: scaleY(-1);
-}
 
 /* ── Mobile adjustments for page-specific sections ───────── */
 
