@@ -464,8 +464,24 @@ const initHeroPhotoBubbles = () => {
     [photoFiles[i], photoFiles[j]] = [photoFiles[j], photoFiles[i]];
   }
 
-  // 画面幅に応じて大・中・小の個数を決定
+  // モバイル: アニメーションなし、ロゴ上に1つの静的バブル写真を表示
   const vw = window.innerWidth;
+  if (vw <= 768) {
+    const heroContent = document.querySelector('.hero-content');
+    const heroTitle = heroContent?.querySelector('h1.hero-title');
+    if (!heroContent || !heroTitle) return;
+
+    const img = document.createElement('img');
+    img.src = `images/photos/${photoFiles[0]}`;
+    img.className = 'photo-bubble photo-bubble-static';
+    img.alt = '';
+    img.width = 180;
+    img.height = 180;
+    heroContent.insertBefore(img, heroTitle);
+    return;
+  }
+
+  // PC: 既存の浮遊バブルアニメーション
   let nLarge, nMedium, nSmall;
   if (vw <= 480) {        // スマホ小: 合計3〜4
     nLarge = 1; nMedium = 1; nSmall = 1 + Math.floor(Math.random() * 2);

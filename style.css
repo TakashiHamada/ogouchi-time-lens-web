@@ -1712,6 +1712,19 @@ footer {
   }
 }
 
+/* Mobile: single static bubble above logo */
+.photo-bubble-static {
+  position: static;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto -0.5rem;
+  opacity: 0.8;
+  box-shadow: 0 0 20px rgba(168, 144, 112, 0.3), 0 0 40px rgba(139, 115, 85, 0.15);
+}
+
 .scroll-arrow {
   width: 1px;
   height: 40px;
