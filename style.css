@@ -1667,10 +1667,7 @@ footer {
 
 .hero-photo-bubbles {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   overflow: hidden;
   z-index: var(--z-hero-overlay);
   pointer-events: none;
