@@ -586,8 +586,13 @@ const initHeroPhotoBubbles = () => {
     const ch = container.clientHeight;
 
     if (!initialized) {
-      placeBubbles(cw, ch);
-      initialized = true;
+      if (cw > 0 && ch > 0) {
+        placeBubbles(cw, ch);
+        initialized = true;
+      } else {
+        requestAnimationFrame(animate);
+        return;
+      }
     }
 
     bubbles.forEach((b) => {
