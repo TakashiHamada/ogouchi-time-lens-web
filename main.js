@@ -577,13 +577,45 @@ const initHeroPhotoBubbles = () => {
     });
   };
 
-  if (prefersReducedMotion) return;
+  // Helper: get container dimensions with hero fallback
+  const getContainerSize = () => {
+    let cw = container.clientWidth;
+    let ch = container.clientHeight;
+    // Fallback: use the hero element dimensions if container reports 0
+    if ((!cw || !ch) && container.parentElement) {
+      cw = cw || container.parentElement.clientWidth;
+      ch = ch || container.parentElement.clientHeight;
+    }
+    return { cw, ch };
+  };
+
+  // Helper: apply bubble position via translate3d (better iOS compositing)
+  const applyTransform = (b) => {
+    const cx = b.x + b.size / 2;
+    const cy = b.y + b.size / 2;
+    b.el.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate(-50%, -50%) scale(${b.scale.toFixed(3)})`;
+  };
+
+  // For reduced-motion: place bubbles statically but don't animate
+  if (prefersReducedMotion) {
+    const tryPlace = () => {
+      const { cw, ch } = getContainerSize();
+      if (cw > 0 && ch > 0) {
+        placeBubbles(cw, ch);
+        bubbles.forEach(applyTransform);
+      } else {
+        // Container not ready yet, retry on next frame
+        requestAnimationFrame(tryPlace);
+      }
+    };
+    requestAnimationFrame(tryPlace);
+    return;
+  }
 
   // Animation loop — bounce off container edges
   let initialized = false;
   const animate = () => {
-    const cw = container.clientWidth;
-    const ch = container.clientHeight;
+    const { cw, ch } = getContainerSize();
 
     if (!initialized) {
       if (cw > 0 && ch > 0) {
@@ -611,10 +643,7 @@ const initHeroPhotoBubbles = () => {
         if (b.y + b.size >= ch) { b.y = ch - b.size; b.vy = -Math.abs(b.vy); }
       }
 
-      // translate to center, then scale from center
-      const cx = b.x + b.size / 2;
-      const cy = b.y + b.size / 2;
-      b.el.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%) scale(${b.scale.toFixed(3)})`;
+      applyTransform(b);
     });
 
     requestAnimationFrame(animate);
